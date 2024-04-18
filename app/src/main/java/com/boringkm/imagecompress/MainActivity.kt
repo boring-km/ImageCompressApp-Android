@@ -9,19 +9,15 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -57,8 +53,8 @@ class MainActivity : ComponentActivity() {
 
           val inputStream = contentResolver.openInputStream(uri)
           if (inputStream != null) {
-            val bytes = inputStream.available() ?: 0
-            originalImageKB.value = bytes / 1024
+            val bytes = inputStream.available()
+            originalImageKB.intValue = bytes / 1024
             val bitmap = BitmapFactory.decodeStream(inputStream)
             val quality = 75
 
